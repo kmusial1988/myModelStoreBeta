@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>myModelStore</title>
+    <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="/common-controls.css">
+    <script src="loginValidator.js"></script>
+</head>
+<body>
+<div th:replace="template.html :: logo"></div>
+<form id="login-form" method="post"  name="loginForm">
+    <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
+    <input type="text" placeholder="Login"class="text-input" th:field="*{user.login}" name="login">
+    <input type="password" placeholder="Hasło" class="text-input" th:field="*{user.password}" name="pass">
+    </br>
+    <input type="submit" value="Zaloguj" id="form-submit">
+    </br>
+    <a href="/register" id="register-link">Zarejestruj</a>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+body{
+background-color: #eceff1
+}
+#content{
+margin: 15px 200px;
+}
+
+.product{
+border: 2px solid gray;
+padding: 10px;
+margin: 10px;
+}
+
+.product-name{
+font-size: 35px;
+}
+
+.product-brand{
+font-size: 30px;
+}
+
+.product-category{
+font-size: 30px;
+}
+
+.product-info span{
+display: inline-block;
+margin: 30px 50px 0 0;
+padding: 5px;
+font-size: 25px;
+}
+.buy {
+background-image: url("addToBasket.webp");
+display: block;
+width: 70px;
+height: 70px;
+background-repeat: no-repeat;
+background-size: 70px;
+float: right;
+padding: 15px;
+
+}
+.edit {
+background-image: url("edit.png");
+display: block;
+width: 50px;
+height: 50px;
+background-repeat: no-repeat;
+background-size: 50px;
+float: right;
+padding: 30px;
+
+}

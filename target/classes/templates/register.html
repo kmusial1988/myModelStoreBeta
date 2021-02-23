@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>myModelStore</title>
+    <link rel="stylesheet" href="/register.css">
+    <link rel="stylesheet" href="/common-controls.css">
+</head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="template.html :: logo"></div>
+<form method="POST" id="register-form" th:object="${user}">
+    <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
+    <!--<input type="text" placeholder="Imie" class="text-input" th:field="${registerModel.name}">
+    <input type="text" placeholder="Nazwisko" class="text-input" th:field="${registerModel.surname}">-->
+    <input type="text" placeholder="Login" class="text-input" th:field="*{login}">
+    <input type="password" placeholder="Hasło" class="text-input" th:field="*{password}">
+    <input type="password" placeholder=" Powtórz hasło" class="text-input" name="password2">
+    </br>
+    <input type="submit" value="OK" id="form-submit" >
+</form>
+</body>
+</html>

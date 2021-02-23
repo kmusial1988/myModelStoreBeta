@@ -1,0 +1,43 @@
+
+#register-form{
+margin: 20px auto;
+width: 500px;
+padding: 0;
+text-align: center;
+}
+
+
+#register-form input{
+display: block;
+}
+
+.text-input{
+width: 100%;
+margin :15px 0;
+font-size: 20 px;
+text-align: center;
+
+}
+
+#form-submit {
+width: 30%;
+margin: 15px auto;
+font-size: 18px;
+background: white;
+transition: color 1s, border 1s;
+color: black;
+
+}
+
+#form-submit:hover {
+cursor: pointer;
+color: gray;
+border: gray;
+
+}
+#info{
+font-size: 20px;
+color: gray;
+text-align: center;
+
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>myModelStore</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/common-controls.css">
+</head>
+<body>
+
+<div th:replace="template.html :: logo"></div>
+<!--<div th:replace="template.html :: logout"></div>-->
+<div th:replace="template.html :: brand"></div>
+<!--<div th:replace="template.html :: login"></div>-->
+
+<div id="filter-form">
+    <form method="post" action="/filter">
+        <input type="text" placeholder="filtruj" name="filter" th:value="${filter}">
+        <input type="submit" value="Filteruj">
+    </form>
+</div>
+<div id="content">
+    <!--<th:block th:each="brand : ${brands}">
+
+        <div class="product">
+            <p th:text="${product.name}" class="product-name"></p>
+            <p th:text="${product.brand}" class="product-brand"></p>
+            <p th:text="${product.category}" class="product-category"></p>
+            <div class="product-info" >
+                <span th:text="'Opakowanie: ' + ${product.box}"></span>
+                <span th:text="'Ilość: ' + ${product.pieces}"></span>
+                <span th:text="'Kod kreskowy: ' + ${product.barcode}"></span>
+                <span th:text="'Cena: ' + ${product.price}"></span>
+                <a th:href="@{/addToBasket/{isbn}(isbn=${product.isbn})} " class="buy"></a>
+                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editVinyl/{isbn}(isbn=${vinyl.isbn})} " class="edit"></a>
+            </div>
+        </div>
+
+    </th:block>-->
+</div>
+</body>
+</html>

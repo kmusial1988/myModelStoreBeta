@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>myModelStore</title>
+</head>
+<body>
+<div id="menu" th:fragment="menu">
+    <a href="/main">Strona główna</a>
+    <a href="/allProduct">Produkt </a>
+    <a href="/allBrand">Marka</a>
+    <a href="/contact">Kontakt</a>
+    <a href="/logout">Wyloguj</a>
+    <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
+    <!--<a href="/edit" th:text="${user.login}" ></a>-->
+    <a href="/basket">Koszyk</a>
+</div>
+
+<!--<img src="/logoStore.png" alt="logo" id="logo" th:fragment="logo">-->
+<a href="/main" alt="logo" id="logo" th:fragment="logo"></a><!--
+<a href="/main" alt="login" id="login" th:fragment="login"></a>-->
+<!--<a href="/logout" alt="logout" id="logout" th:fragment="logout"></a>-->
+
+<div id="brand" th:fragment="brand">
+    <a href="/main">Strona główna</a>
+    <a href="/allBrand">Marki </a>
+    <a href="/addBrand">Dodaj Marke</a>
+    <a href="/contact">Kontakt</a>
+    <a href="/logout">Wyloguj</a>
+    <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
+    <!--<a href="/edit" th:text="${user.login}" ></a>-->
+    <a href="/basket">Koszyk</a>
+</div>
+
+<div id="product" th:fragment="product">
+    <a href="/main">Strona główna</a>
+    <a href="/allProduct">Produkt </a>
+    <a href="/addProduct">Dodaj Produkt</a>
+    <a href="/contact">Kontakt</a>
+    <a href="/logout">Wyloguj</a>
+    <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
+    <!--<a href="/edit" th:text="${user.login}" ></a>-->
+    <a href="/basket">Koszyk</a>
+</div>
+
+</body>
+</html>
