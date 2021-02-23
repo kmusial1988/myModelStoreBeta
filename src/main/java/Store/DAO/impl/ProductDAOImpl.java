@@ -63,4 +63,73 @@ public class ProductDAOImpl implements IProductDAO {
 
         return result;
     }
+
+    @Override
+    public List<Product> getProductByCategory(Product.Category category) {
+        Session session = this.sessionFactory.openSession();
+
+        Query<Product> query = session
+                .createQuery("FROM Store.model.Product WHERE category = :category");
+        query.setParameter("category", category);
+        List<Product> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public List<Product> getProductByFilter(String filter) {
+
+        Session session = this.sessionFactory.openSession();
+
+        Query<Product> query = session
+                .createQuery("FROM Store.model.Product WHERE category = :category");
+        query.setParameter("category", category);
+        List<Product> result = query.getResultList();
+        session.close();
+        return result;
+    }
+/*
+    @Override
+    public List<Product> allProductListCat1() {
+        Session session = this.sessionFactory.openSession();
+        Query<Product> query = session
+                .createQuery("FROM Store.model.Product");
+        List<Product> result = query.getResultList();
+        session.close();
+
+        return result;
+    }
+
+    @Override
+    public List<Product> allProductListCat2() {
+        Session session = this.sessionFactory.openSession();
+        Query<Product> query = session
+                .createQuery("FROM Store.model.Product");
+        List<Product> result = query.getResultList();
+        session.close();
+
+        return result;
+    }
+
+    @Override
+    public List<Product> allProductListCat3() {
+        Session session = this.sessionFactory.openSession();
+        Query<Product> query = session
+                .createQuery("FROM Store.model.Product");
+        List<Product> result = query.getResultList();
+        session.close();
+
+        return result;
+    }
+
+    @Override
+    public List<Product> allProductListCat4() {
+        Session session = this.sessionFactory.openSession();
+        Query<Product> query = session
+                .createQuery("FROM Store.model.Product");
+        List<Product> result = query.getResultList();
+        session.close();
+
+        return result;
+    }*/
 }

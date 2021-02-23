@@ -4,12 +4,14 @@ import Store.model.Product;
 import Store.services.IBrandService;
 import Store.services.IProductService;
 import Store.session.SessionObject;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -51,5 +53,46 @@ public class ProductController {
 
         return "allProduct";
     }
+
+
+
+    @RequestMapping(value = "/allCat", method = RequestMethod.GET)
+    public String allCat(Model model){
+        model.addAttribute("products", this.productService.allProductList());
+        return "allProduct";
+    }
+
+    @RequestMapping(value = "/CAT1", method = RequestMethod.GET)
+    public String cat1(Model model){
+        model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT1));
+        return "allProduct";
+    }
+
+    @RequestMapping(value = "/CAT2", method = RequestMethod.GET)
+    public String cat2(Model model){
+        model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT2));
+        return "allProduct";
+    }
+
+    @RequestMapping(value = "/CAT3", method = RequestMethod.GET)
+    public String cat3(Model model){
+        model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT3));
+        return "allProduct";
+    }
+
+    @RequestMapping(value = "/CAT4", method = RequestMethod.GET)
+    public String cat4(Model model){
+        model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT4));
+        return "allProduct";
+    }
+
+    @RequestMapping(value = "/filter", method = RequestMethod.POST)
+    public String filter(@RequestParam String filter, Model model) {
+
+
+
+        return "";
+    }
+
 
 }

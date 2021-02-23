@@ -26,5 +26,10 @@ public class ProductServiceImpl implements IProductService{
         return this.productDAO.allProductList();
     }
 
+    @Override
+    public List<Product> getProductByCategory(Product.Category category) {
+        return this.productDAO.getProductByCategory(category);
+    }
+
 
 }

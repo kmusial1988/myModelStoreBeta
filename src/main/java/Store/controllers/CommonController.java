@@ -3,11 +3,13 @@ package Store.controllers;
 import Store.model.Product;
 import Store.services.IProductService;
 import Store.session.SessionObject;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -35,11 +37,7 @@ public class CommonController {
         return "main";
     }
 
-    /*@RequestMapping(value = "/filter", method = RequestMethod.POST)
-    public String filter() {
 
-
-    }*/
 
 
 }
