@@ -21,8 +21,8 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public List<Brand> getAllBrandsByName() {
+    public List<Brand> getAllBrands() {
 
-        return this.brandDAO.getAllBrandsByName();
+        return this.brandDAO.getAllBrands();
     }
 }

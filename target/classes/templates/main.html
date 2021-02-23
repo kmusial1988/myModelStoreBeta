@@ -20,7 +20,7 @@
     </form>
 </div>
 <div id="content">
-    <th:block th:each="product : ${products}">
+  <!--  <th:block th:each="product : ${products}">
 
         <div class="product">
             <p th:text="${product.name}" class="product-name"></p>
@@ -31,12 +31,12 @@
                 <span th:text="'Ilość: ' + ${product.pieces}"></span>
                 <span th:text="'Kod kreskowy: ' + ${product.barcode}"></span>
                 <span th:text="'Cena: ' + ${product.price}"></span>
-                <!--<a th:href="@{/addToBasket/{isbn}(isbn=${product.isbn})} " class="buy"></a>
-                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editVinyl/{isbn}(isbn=${vinyl.isbn})} " class="edit"></a>-->
+                &lt;!&ndash;<a th:href="@{/addToBasket/{isbn}(isbn=${product.isbn})} " class="buy"></a>
+                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editVinyl/{isbn}(isbn=${vinyl.isbn})} " class="edit"></a>&ndash;&gt;
             </div>
         </div>
 
-    </th:block>
+    </th:block>-->
 </div>
 </body>
 </html>

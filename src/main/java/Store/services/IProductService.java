@@ -8,5 +8,4 @@ public interface IProductService {
     void addProduct(Product product);
     List<Product> allProductList();
 
-    boolean productExist(Product product);
 }

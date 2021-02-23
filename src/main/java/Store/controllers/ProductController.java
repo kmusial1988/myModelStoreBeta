@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class ProductController {
 
@@ -27,7 +29,7 @@ public class ProductController {
     public String showAddProduct(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("info", this.sessionObject.getInfo());
-        model.addAttribute("brands", this.brandService.getAllBrandsByName());
+        model.addAttribute("brands", this.brandService.getAllBrands());
 
         return "addProduct";
     }
@@ -37,22 +39,14 @@ public class ProductController {
 
 
         this.productService.addProduct(product);
-/*
-        boolean checkResult =
-                this.productService.productExist(product);
 
-        if(checkResult) {
-            this.sessionObject.setInfo("Urzytkownik dodany !!!");
-            return "redirect:/main";
-        } else {
-            this.sessionObject.setInfo("Nieprawidłowe dane1 !!!");
-            return "redirect:/main";
-        }*/
         return "redirect:/addProduct";
     }
     @RequestMapping(value = "/allProduct", method = RequestMethod.GET)
     public String showAllProduct(Model model) {
 
+        List<Product> products = this.productService.allProductList();
+        model.addAttribute("products", products);
 
 
         return "allProduct";

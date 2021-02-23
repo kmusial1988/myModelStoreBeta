@@ -31,10 +31,6 @@ public class CommonController {
     public String main(Model model) {
 
 
-        List<Product> products = this.productService.allProductList();
-        model.addAttribute("products", products);
-
-
 
         return "main";
     }

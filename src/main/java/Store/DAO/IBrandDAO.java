@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IBrandDAO {
     void addBrand(Brand brand);
-    List<Brand> getAllBrandsByName();
+    List<Brand> getAllBrands();
 
 }

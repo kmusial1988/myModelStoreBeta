@@ -26,13 +26,5 @@ public class ProductServiceImpl implements IProductService{
         return this.productDAO.allProductList();
     }
 
-    @Override
-    public boolean productExist(Product product) {
-        if(!product.getBarcode().equals(productDAO.getProductByBarcode(product.getBarcode()))) {
-            return false;
-        }
 
-        this.productDAO.addProduct(product);
-        return true;
-    }
 }

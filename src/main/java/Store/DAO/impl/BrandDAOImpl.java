@@ -37,7 +37,7 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     @Override
-    public List<Brand> getAllBrandsByName() {
+    public List<Brand> getAllBrands() {
 
         Session session = this.sessionFactory.openSession();
         Query<Brand> query = session

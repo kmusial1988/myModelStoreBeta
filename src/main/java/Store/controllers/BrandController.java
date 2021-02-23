@@ -1,6 +1,7 @@
 package Store.controllers;
 
 import Store.model.Brand;
+import Store.model.Product;
 import Store.services.IBrandService;
 import Store.session.SessionObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 @Controller
 public class BrandController {
@@ -39,6 +42,8 @@ public class BrandController {
     @RequestMapping(value = "/allBrand", method = RequestMethod.GET)
     public String showAllBrand(Model model) {
 
+        List<Brand> brands = this.brandService.getAllBrands();
+        model.addAttribute("brands", brands);
 
         return "allBrand";
     }

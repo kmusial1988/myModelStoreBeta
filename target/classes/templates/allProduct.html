@@ -9,9 +9,8 @@
 <body>
 
 <div th:replace="template.html :: logo"></div>
-<!--<div th:replace="template.html :: logout"></div>-->
 <div th:replace="template.html :: product"></div>
-<!--<div th:replace="template.html :: login"></div>-->
+<div th:replace="template.html :: category"></div>
 
 <div id="filter-form">
     <form method="post" action="/filter">
@@ -31,8 +30,8 @@
                 <span th:text="'Ilość: ' + ${product.pieces}"></span>
                 <span th:text="'Kod kreskowy: ' + ${product.barcode}"></span>
                 <span th:text="'Cena: ' + ${product.price}"></span>
-                <a th:href="@{/addToBasket/{isbn}(isbn=${product.isbn})} " class="buy"></a>
-                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editVinyl/{isbn}(isbn=${vinyl.isbn})} " class="edit"></a>
+                <!--<a th:href="@{/addToBasket/{isbn}(isbn=${product.isbn})} " class="buy"></a>
+                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editVinyl/{isbn}(isbn=${vinyl.isbn})} " class="edit"></a>-->
             </div>
         </div>
 
