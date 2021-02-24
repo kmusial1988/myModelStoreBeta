@@ -26,7 +26,7 @@ public class AuthenticationController {
         model.addAttribute("user", new User());
         model.addAttribute("info", this.sessionObject.getInfo());
 
-        /*if(sessionObject.getUser() == null) {
+       /* if(sessionObject.getUser() == null) {
             model.addAttribute("isLogged", false);
             return "login";
         } else {
@@ -43,6 +43,7 @@ public class AuthenticationController {
         boolean authenticationResult = userService.authenticate(user);
 
         if(authenticationResult) {
+            this.sessionObject.setLogged(true);
             /*sessionObject.setUser(new User());*/
             return "redirect:/main";
         } else {
@@ -52,6 +53,14 @@ public class AuthenticationController {
         }
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+
+    public String logout() {
+
+        this.sessionObject.setLogged(false);
+
+        return "redirect:/login";
+    }
 
 
 }

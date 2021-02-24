@@ -31,10 +31,20 @@ public class CommonController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model) {
+        if(sessionObject.isLogged()){
+            return "main";
+        }else{
+            return "redirect:/login";
+        }
+
+    }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String contact() {
 
 
 
-        return "main";
+        return "contact";
     }
 
 

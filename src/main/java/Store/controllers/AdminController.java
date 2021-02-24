@@ -28,6 +28,8 @@ public class AdminController {
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     public String addUser() {
         User user = new User();
+        user.setName("adminName");
+        user.setSurname("adminSurname");
         user.setLogin("admin");
         String hashedPassword = DigestUtils.md5Hex("admin");
         user.setPassword(hashedPassword);
