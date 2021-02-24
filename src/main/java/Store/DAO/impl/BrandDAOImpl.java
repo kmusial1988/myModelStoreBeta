@@ -47,4 +47,32 @@ public class BrandDAOImpl implements IBrandDAO {
 
         return result;
     }
+
+    @Override
+    public List<Brand> findBrandName(String pattern) {
+        Session session = this.sessionFactory.openSession();
+
+        Query<Brand> query = session
+                .createQuery("FROM Store.model.Brand WHERE name like :name OR Shortcut like :Shortcut");
+        query.setParameter("name", "%" + pattern + "%");
+        query.setParameter("Shortcut", "%" + pattern + "%");
+        List<Brand> result = query.getResultList();
+        session.close();
+
+        return result;
+    }
+
+    @Override
+    public List<Brand> findBrand(String patternBrand) {
+        Session session = this.sessionFactory.openSession();
+
+        Query<Brand> query = session
+                .createQuery("FROM Store.model.Brand WHERE name like :name OR Shortcut like :Shortcut");
+        query.setParameter("name", "%" + patternBrand + "%");
+        query.setParameter("Shortcut", "%" + patternBrand + "%");
+        List<Brand> result = query.getResultList();
+        session.close();
+
+        return result;
+    }
 }

@@ -87,11 +87,14 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
-    public String filter(@RequestParam String filter, Model model) {
+    public String filter(@RequestParam String pattern, Model model) {
+        List<Product> products = this.productService.findProduct(pattern);
+        model.addAttribute("products", products);
 
 
 
-        return "";
+
+        return "allProduct";
     }
 
 

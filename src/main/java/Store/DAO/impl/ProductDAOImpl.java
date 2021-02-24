@@ -76,35 +76,26 @@ public class ProductDAOImpl implements IProductDAO {
         return result;
     }
 
-    @Override
-    public List<Product> getProductByFilter(String filter) {
 
+    @Override
+    public List<Product> getProductByName(String name) {
         Session session = this.sessionFactory.openSession();
 
         Query<Product> query = session
-                .createQuery("FROM Store.model.Product WHERE category = :category");
-        query.setParameter("category", category);
-        List<Product> result = query.getResultList();
+                .createQuery("FROM Store.model.Product WHERE name = :name");
+        query.setParameter("name", name);
+        List<Product> resultName = query.getResultList();
         session.close();
-        return result;
-    }
-/*
-    @Override
-    public List<Product> allProductListCat1() {
-        Session session = this.sessionFactory.openSession();
-        Query<Product> query = session
-                .createQuery("FROM Store.model.Product");
-        List<Product> result = query.getResultList();
-        session.close();
-
-        return result;
+        return resultName;
     }
 
     @Override
-    public List<Product> allProductListCat2() {
+    public List<Product> findProduct(String pattern) {
         Session session = this.sessionFactory.openSession();
         Query<Product> query = session
-                .createQuery("FROM Store.model.Product");
+                .createQuery("FROM Store.model.Product WHERE name like :name OR barcode like :barcode ");
+        query.setParameter("name", "%" + pattern + "%");
+        query.setParameter("barcode", "%" + pattern + "%");
         List<Product> result = query.getResultList();
         session.close();
 
@@ -112,24 +103,16 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
-    public List<Product> allProductListCat3() {
+    public List<Product> getProductByBrandId(int id) {
+
         Session session = this.sessionFactory.openSession();
         Query<Product> query = session
-                .createQuery("FROM Store.model.Product");
+                .createQuery("FROM Store.model.Product WHERE brand_id like :brand ");
+        query.setParameter("brand", id);
         List<Product> result = query.getResultList();
         session.close();
 
         return result;
     }
 
-    @Override
-    public List<Product> allProductListCat4() {
-        Session session = this.sessionFactory.openSession();
-        Query<Product> query = session
-                .createQuery("FROM Store.model.Product");
-        List<Product> result = query.getResultList();
-        session.close();
-
-        return result;
-    }*/
 }

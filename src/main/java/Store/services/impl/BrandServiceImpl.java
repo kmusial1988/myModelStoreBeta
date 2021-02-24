@@ -2,6 +2,7 @@ package Store.services.impl;
 
 import Store.DAO.IBrandDAO;
 import Store.model.Brand;
+import Store.model.Product;
 import Store.services.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,15 @@ public class BrandServiceImpl implements IBrandService {
     public List<Brand> getAllBrands() {
 
         return this.brandDAO.getAllBrands();
+    }
+
+    @Override
+    public List<Brand> findBrand(String pattern) {
+        return this.findBrand(pattern);
+    }
+
+    @Override
+    public List<Brand> findBrandBrand(String patternBrand) {
+        return this.brandDAO.findBrand(patternBrand);
     }
 }

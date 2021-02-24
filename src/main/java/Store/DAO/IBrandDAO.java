@@ -7,5 +7,6 @@ import java.util.List;
 public interface IBrandDAO {
     void addBrand(Brand brand);
     List<Brand> getAllBrands();
-
+    List<Brand> findBrandName(String pattern);
+    List<Brand> findBrand(String patternBrand);
 }

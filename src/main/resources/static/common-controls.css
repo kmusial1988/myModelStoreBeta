@@ -11,6 +11,15 @@ background-repeat: no-repeat;
 
 }
 
+#front{
+width: auto;
+height: 900px;
+display: block;
+margin: 10% 2% 2% 33%;
+background-image: url("front.jpg");
+background-repeat: no-repeat;
+}
+
 /*#login{
 width: 800px;
 height: 240px;

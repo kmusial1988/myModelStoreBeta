@@ -14,9 +14,9 @@
 <!--<div th:replace="template.html :: login"></div>-->
 
 <div id="filter-form">
-    <form method="post" action="/filter">
-        <input type="text" placeholder="filtruj" name="filter" th:value="${filter}">
-        <input type="submit" value="Filteruj">
+    <form method="post" action="/filterBrand">
+        <input type="text" placeholder="Filter" name="patternBrand" th:value="${filter}">
+        <input type="submit" value="OK">
     </form>
 </div>
 <div id="content">

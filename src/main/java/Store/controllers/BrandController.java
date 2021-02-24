@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -44,6 +45,20 @@ public class BrandController {
 
         List<Brand> brands = this.brandService.getAllBrands();
         model.addAttribute("brands", brands);
+
+        return "allBrand";
+    }
+
+    @RequestMapping(value = "/filterBrand", method = RequestMethod.POST)
+
+    //TODO nie dziala
+
+    public String filterBrand(@RequestParam String patternBrand, Model model) {
+
+        List<Brand> brands =this.brandService.findBrand(patternBrand);
+
+        model.addAttribute("brands", brands);
+
 
         return "allBrand";
     }

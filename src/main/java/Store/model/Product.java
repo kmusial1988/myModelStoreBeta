@@ -107,10 +107,26 @@ public class Product {
         OTHER
 
     }
+
     public enum Category {
         CAT1,
         CAT2,
         CAT3,
         CAT4,
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Product) {
+            Product p = (Product) o;
+            return p.id == this.id;
+        }
+            return false;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
     }
 }
