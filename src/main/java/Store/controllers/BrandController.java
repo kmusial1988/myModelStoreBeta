@@ -28,14 +28,14 @@ public class BrandController {
 
         model.addAttribute("brand", new Brand());
         model.addAttribute("info", this.sessionObject.getInfo());
-
+        model.addAttribute("user", this.sessionObject.getUser());
 
         return "addBrand";
     }
 
     @RequestMapping(value = "/addBrand", method = RequestMethod.POST)
     public String addBrand(@ModelAttribute Brand brand, Model model) {
-
+        model.addAttribute("user", this.sessionObject.getUser());
         this.brandService.addBrand(brand);
 
         return "redirect:/addBrand";
@@ -45,7 +45,7 @@ public class BrandController {
 
         List<Brand> brands = this.brandService.getAllBrands();
         model.addAttribute("brands", brands);
-
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allBrand";
     }
 
@@ -58,7 +58,6 @@ public class BrandController {
         List<Brand> brands =this.brandService.findBrand(patternBrand);
 
         model.addAttribute("brands", brands);
-
 
         return "allBrand";
     }

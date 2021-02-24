@@ -32,6 +32,9 @@ public class CommonController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model) {
         if(sessionObject.isLogged()){
+
+            model.addAttribute("user", this.sessionObject.getUser());
+
             return "main";
         }else{
             return "redirect:/login";
@@ -40,11 +43,14 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String contact() {
+    public String contact(Model model) {
+        if (sessionObject.isLogged()) {
 
-
-
-        return "contact";
+            model.addAttribute("user", this.sessionObject.getUser());
+            return "contact";
+        } else {
+            return "redirect:/login";
+        }
     }
 
 

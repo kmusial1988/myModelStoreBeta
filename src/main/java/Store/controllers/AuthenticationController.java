@@ -26,12 +26,7 @@ public class AuthenticationController {
         model.addAttribute("user", new User());
         model.addAttribute("info", this.sessionObject.getInfo());
 
-       /* if(sessionObject.getUser() == null) {
-            model.addAttribute("isLogged", false);
-            return "login";
-        } else {
-            return "redirect:/main";
-        }*/
+
 
         return "login";
     }
@@ -40,11 +35,11 @@ public class AuthenticationController {
 
     public String login(@ModelAttribute User user, Model model) {
         model.addAttribute("info", this.sessionObject.getInfo());
-        boolean authenticationResult = userService.authenticate(user);
 
-        if(authenticationResult) {
-            this.sessionObject.setLogged(true);
-            /*sessionObject.setUser(new User());*/
+        this.sessionObject.setUser(this.userService.authenticate(user));
+        User loggedUser = userService.authenticate(user);
+
+        if(this.sessionObject.getUser() != null) {
             return "redirect:/main";
         } else {
             this.sessionObject.setInfo("Nieprawidłowe Dane !!!");
@@ -57,7 +52,7 @@ public class AuthenticationController {
 
     public String logout() {
 
-        this.sessionObject.setLogged(false);
+        this.sessionObject.setUser(null);
 
         return "redirect:/login";
     }

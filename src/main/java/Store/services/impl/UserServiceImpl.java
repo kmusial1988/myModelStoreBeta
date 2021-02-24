@@ -14,28 +14,29 @@ public class UserServiceImpl implements IUserService {
     IUserDAO userDAO;
 
     @Override
-    public boolean authenticate(User user) {
+    public User authenticate(User user) {
         User userFormDataBase = userDAO.getUserByLogin(user.getLogin());
 
-        if(userFormDataBase == null) {
-            return false;
+        if (userFormDataBase == null) {
+            return null;
         }
 
-        if(DigestUtils.md5Hex(user.getPassword())
+        if (DigestUtils.md5Hex(user.getPassword())
                 .equals(userFormDataBase.getPassword())) {
-            return true;
+            return userFormDataBase;
         } else {
-            return false;
+            return null;
         }
     }
+
     @Override
-    public void addUser(User user){
+    public void addUser(User user) {
         this.userDAO.addUser(user);
     }
 
     @Override
     public boolean registerUser(User user, String repeatedPassword) {
-        if(!user.getPassword().equals(repeatedPassword)) {
+        if (!user.getPassword().equals(repeatedPassword)) {
             return false;
         }
         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
@@ -43,6 +44,11 @@ public class UserServiceImpl implements IUserService {
         return true;
     }
 
+    @Override
+    public User upgradeUser(User user) {
+        this.userDAO.upgradeUser(user);
+        return user;
+    }
 
 
 }

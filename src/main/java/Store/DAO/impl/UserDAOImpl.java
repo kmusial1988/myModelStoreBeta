@@ -49,5 +49,23 @@ public class UserDAOImpl implements IUserDAO {
         }
     }
 
+    @Override
+    public User upgradeUser(User user) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.saveOrUpdate(user);
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return user;
+    }
+
 
 }

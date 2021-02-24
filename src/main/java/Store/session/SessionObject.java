@@ -1,20 +1,22 @@
 package Store.session;
 
-import Store.model.Product;
+import Store.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.List;
 
 @Component
 @SessionScope
 public class SessionObject {
 
-    private boolean isLogged = false;
-    private List<Product>chart;
 
+    private User user =null;
     private String info = null;
 
+
+    public boolean isLogged() {
+        return  !(this.user == null);
+    }
 
     public String getInfo() {
         String result = this.info;
@@ -26,12 +28,12 @@ public class SessionObject {
         this.info = info;
     }
 
-    public boolean isLogged() {
-        return isLogged;
+    public User getUser() {
+        return user;
     }
 
-    public void setLogged(boolean logged) {
-        isLogged = logged;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Płyty Vinylowe</title>
+    <link rel="stylesheet" href="/edit.css">
+    <link rel="stylesheet" href="/common-controls.css">
+</head>
+<body>
+<div th:replace="template.html :: logo"></div>
+<div th:replace="template.html :: menu"></div>
+
+<form id="edit-data-form" method="post" action="/changeData">
+    <input type="text" placeholder="Name"class="text-input" th:field="*{user.name}">
+    <input type="text" placeholder="Surname"class="text-input" th:field="*{user.surname}">
+    <input type="submit" value="OK" class="form-submit">
+</form>
+
+<form id="change-pass-form" method="post" action="/changePass">
+    <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
+    <!--<input type="password" placeholder="Password"class="text-input" th:field="*{passModel.pass}" >
+    <input type="password" placeholder="New Password"class="text-input" th:field="*{passModel.newPass}">
+    <input type="password" placeholder="Repeat Password"class="text-input" th:field="*{passModel.repeatedNewPass}">-->
+    <input type="submit" value="OK" class="form-submit">
+</form>
+
+</body>
+</html>

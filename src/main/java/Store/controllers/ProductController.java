@@ -32,14 +32,14 @@ public class ProductController {
         model.addAttribute("product", new Product());
         model.addAttribute("info", this.sessionObject.getInfo());
         model.addAttribute("brands", this.brandService.getAllBrands());
+        model.addAttribute("user", this.sessionObject.getUser());
 
         return "addProduct";
     }
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute Product product, Model model) {
-
-
+        model.addAttribute("user", this.sessionObject.getUser());
         this.productService.addProduct(product);
 
         return "redirect:/addProduct";
@@ -49,8 +49,7 @@ public class ProductController {
 
         List<Product> products = this.productService.allProductList();
         model.addAttribute("products", products);
-
-
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allProduct";
     }
 
@@ -59,38 +58,43 @@ public class ProductController {
     @RequestMapping(value = "/allCat", method = RequestMethod.GET)
     public String allCat(Model model){
         model.addAttribute("products", this.productService.allProductList());
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allProduct";
     }
 
     @RequestMapping(value = "/CAT1", method = RequestMethod.GET)
     public String cat1(Model model){
         model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT1));
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allProduct";
     }
 
     @RequestMapping(value = "/CAT2", method = RequestMethod.GET)
     public String cat2(Model model){
         model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT2));
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allProduct";
     }
 
     @RequestMapping(value = "/CAT3", method = RequestMethod.GET)
     public String cat3(Model model){
         model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT3));
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allProduct";
     }
 
     @RequestMapping(value = "/CAT4", method = RequestMethod.GET)
     public String cat4(Model model){
         model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT4));
+        model.addAttribute("user", this.sessionObject.getUser());
         return "allProduct";
     }
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public String filter(@RequestParam String pattern, Model model) {
+
         List<Product> products = this.productService.findProduct(pattern);
         model.addAttribute("products", products);
-
 
 
 

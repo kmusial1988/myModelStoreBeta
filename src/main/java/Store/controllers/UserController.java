@@ -52,4 +52,28 @@ public class UserController {
             return "redirect:/register";
         }
     }
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    public String edit(Model model){
+        if (this.sessionObject.isLogged()) {
+            model.addAttribute("user", this.sessionObject.getUser());
+
+            model.addAttribute("info", this.sessionObject.getInfo());
+            this.sessionObject.setInfo(null);
+            return "edit";
+        }else {
+            return "redirect:/login";
+        }
+    }
+
+
+    @RequestMapping(value = "/changeData", method = RequestMethod.POST)
+    public String changeData(@ModelAttribute User user) {
+
+        user.setLogin(this.sessionObject.getUser().getLogin());
+        User updateUser = this.userService.upgradeUser(user);
+        this.sessionObject.setUser(updateUser);
+        this.userService.addUser(updateUser);
+//TODO zapis w bazie nie działa
+        return "redirect:/edit";
+    }
 }

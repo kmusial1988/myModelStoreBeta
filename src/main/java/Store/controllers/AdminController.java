@@ -34,7 +34,16 @@ public class AdminController {
         String hashedPassword = DigestUtils.md5Hex("admin");
         user.setPassword(hashedPassword);
 
+        User user1 = new User();
+        user.setName("kamil");
+        user.setSurname("kamil");
+        user.setLogin("kamil");
+        user.setPassword("11d462a4a1b14b00580d8020d6f64998");
+
+
+
         userService.addUser(user);
+        userService.addUser(user1);
 
         return "redirect:/login";
     }
