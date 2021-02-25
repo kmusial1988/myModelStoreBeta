@@ -40,7 +40,17 @@ public class UserServiceImpl implements IUserService {
             return false;
         }
         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        user.setRole(User.Role.USER);
         this.userDAO.addUser(user);
+        return true;
+    }
+
+    @Override
+    public boolean checkLogin(User user, String login) {
+        User userFromDB = userDAO.getUserByLogin(user.getLogin());
+        if (!userFromDB.getLogin().equals(login)) {
+            return false;
+        }
         return true;
     }
 
@@ -70,5 +80,9 @@ public class UserServiceImpl implements IUserService {
 
         return null;
     }
+
+
+
+
 
 }

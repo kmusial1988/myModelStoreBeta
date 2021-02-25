@@ -13,8 +13,8 @@
 <div th:replace="template.html :: logo"></div>
 <form method="POST" id="register-form" th:object="${user}">
     <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
-    <!--<input type="text" placeholder="Imie" class="text-input" th:field="${registerModel.name}">
-    <input type="text" placeholder="Nazwisko" class="text-input" th:field="${registerModel.surname}">-->
+    <input type="text" placeholder="Imie" class="text-input" th:field="*{name}">
+    <input type="text" placeholder="Nazwisko" class="text-input" th:field="*{surname}">
     <input type="text" placeholder="Login" class="text-input" th:field="*{login}">
     <input type="password" placeholder="Hasło" class="text-input" th:field="*{password}">
     <input type="password" placeholder=" Powtórz hasło" class="text-input" name="password2">

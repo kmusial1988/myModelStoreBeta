@@ -32,7 +32,8 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute User user,
-                           @RequestParam String password2, Model model) {
+                           @RequestParam String password2, Model model,
+    @RequestParam String login) {
         /* TODO Pattern compiledPattern = Pattern.compile(".*[0-9]+.*");
         Matcher matcher = compiledPattern.matcher(user.getPassword());
         matcher.matches();
@@ -41,18 +42,29 @@ public class UserController {
             this.sessionObject.setInfo("Nieprawidłowo powtórzone hasła !!!");
             return "redirect:/register";
         }
+//TODO powtarzający sie login
+       /* boolean checkExistLogin = this.userService.checkLogin(user, login);
 
-        boolean registerResult =
-                this.userService.registerUser(user, password2);
-
-        if(registerResult) {
-            this.sessionObject.setInfo("Urzytkownik dodany !!!");
-            return "redirect:/login";
-        } else {
-            this.sessionObject.setInfo("Nieprawidłowe dane1 !!!");
+        if(checkExistLogin){
+            this.sessionObject.setInfo("Login istnieje !!!");
             return "redirect:/register";
-        }
+        }else {*/
+
+            boolean registerResult =
+                    this.userService.registerUser(user, password2);
+
+
+            if (registerResult) {
+                this.sessionObject.setInfo("Urzytkownik dodany !!!");
+                return "redirect:/login";
+            } else {
+                this.sessionObject.setInfo("Nieprawidłowe dane1 !!!");
+                return "redirect:/register";
+            }
+
+
     }
+
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String edit(Model model){
         if (this.sessionObject.isLogged()) {
@@ -80,11 +92,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/changePass", method = RequestMethod.POST)
-    public String changePass(@ModelAttribute ChangePassData changePassData) {
+    public String changePass(@ModelAttribute ChangePassData changePassData, Model model) {
 
-        if(changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())){
+        if(!changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())){
 
-            //TODO nieprawidłowe hasło powtórzono
+           this.sessionObject.setInfo( "Źle powtórzone nowe hasło !!!");
+           return "redirect:/edit";
 
         }
 
@@ -95,7 +108,8 @@ public class UserController {
         User authenticateUser = this.userService.authenticate(user);
         if(authenticateUser == null){
 
-            //TODO nieprawidłowe hasło
+            this.sessionObject.setInfo( "Nieprawidłowe hasło !!!");
+            return "redirect:/edit";
         }
 
         user.setPassword(changePassData.getNewPass());

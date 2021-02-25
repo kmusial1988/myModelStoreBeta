@@ -15,6 +15,10 @@ public class User {
     private String login;
     @Column(nullable = false)
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
 
     public int getId() {
         return id;
@@ -56,6 +60,14 @@ public class User {
         this.surname = surname;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -64,6 +76,13 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
+    }
+
+    public enum Role {
+
+        USER,
+        ADMIN
     }
 }

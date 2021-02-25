@@ -31,6 +31,7 @@
 
 <div id="product" th:fragment="product">
     <a href="/main">Strona główna</a>
+    <a href="/allProduct">Produkt </a>
     <a href="/addProduct">Dodaj Produkt</a>
     <a href="/logout">Wyloguj</a>
     <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
@@ -40,12 +41,12 @@
 
 
 <div id="category" th:fragment="category">
-    <a> Produkt </a>
-    <a href="/allCat"> allCat</a>
-    <a href="/CAT1">CAT1</a>
-    <a href="/CAT2">CAT2</a>
-    <a href="/CAT3">CAT3</a>
-    <a href="/CAT4">CAT4</a>
+    <a> Kategorie produkt --> </a>
+    <a href="/allProduct?subpage=allCat"> allCat</a>
+    <a href="/allProduct?subpage=CAT1">CAT1</a>
+    <a href="/allProduct?subpage=CAT2">CAT2</a>
+    <a href="/allProduct?subpage=CAT3">CAT3</a>
+    <a href="/allProduct?subpage=CAT4">CAT4</a>
 
 </div>
 </body>

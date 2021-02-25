@@ -53,7 +53,7 @@ public class AuthenticationController {
     public String logout() {
 
         this.sessionObject.setUser(null);
-
+        this.sessionObject.setInfo("Zostałeś wylogowany !!!");
         return "redirect:/login";
     }
 

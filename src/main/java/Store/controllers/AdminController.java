@@ -33,12 +33,15 @@ public class AdminController {
         user.setLogin("admin");
         String hashedPassword = DigestUtils.md5Hex("admin");
         user.setPassword(hashedPassword);
+        user.setRole(User.Role.ADMIN);
 
         User user1 = new User();
-        user.setName("kamil");
-        user.setSurname("kamil");
-        user.setLogin("kamil");
-        user.setPassword("11d462a4a1b14b00580d8020d6f64998");
+        user1.setName("kamil");
+        user1.setSurname("kamil");
+        user1.setLogin("kamil");
+        user1.setPassword("11d462a4a1b14b00580d8020d6f64998");
+        user1.setRole(User.Role.USER);
+
 
 
 

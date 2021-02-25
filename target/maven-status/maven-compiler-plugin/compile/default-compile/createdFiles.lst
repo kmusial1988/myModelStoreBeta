@@ -10,6 +10,7 @@ Store/services/IUserService.class
 Store/controllers/AdminController.class
 Store/controllers/AuthenticationController.class
 Store/DAO/impl/ProductDAOImpl.class
+Store/model/User$Role.class
 Store/DAO/impl/UserDAOImpl.class
 Store/controllers/ProductController.class
 Store/AppConfiguration.class

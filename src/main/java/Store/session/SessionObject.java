@@ -12,7 +12,15 @@ public class SessionObject {
 
     private User user =null;
     private String info = null;
+    private String filter = null;
 
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
 
     public boolean isLogged() {
         return  !(this.user == null);
