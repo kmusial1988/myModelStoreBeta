@@ -11,4 +11,5 @@ public interface IBrandService {
     List<Brand> findBrand(String pattern);
     List<Brand> findBrandBrand(String patternBrand);
 
+
 }

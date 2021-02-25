@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Płyty Vinylowe</title>
+    <title>myModelStore</title>
     <link rel="stylesheet" href="/edit.css">
     <link rel="stylesheet" href="/common-controls.css">
 </head>
@@ -18,9 +18,9 @@
 
 <form id="change-pass-form" method="post" action="/changePass">
     <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
-    <!--<input type="password" placeholder="Password"class="text-input" th:field="*{passModel.pass}" >
+    <input type="password" placeholder="Password"class="text-input" th:field="*{passModel.pass}" >
     <input type="password" placeholder="New Password"class="text-input" th:field="*{passModel.newPass}">
-    <input type="password" placeholder="Repeat Password"class="text-input" th:field="*{passModel.repeatedNewPass}">-->
+    <input type="password" placeholder="Repeat Password"class="text-input" th:field="*{passModel.repeatedNewPass}">
     <input type="submit" value="OK" class="form-submit">
 </form>
 

@@ -5,6 +5,7 @@
 /home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/DAO/impl/ProductDAOImpl.java
 /home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/model/Product.java
 /home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/controllers/BrandController.java
+/home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/model/view/ChangePassData.java
 /home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/services/impl/ProductServiceImpl.java
 /home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/DAO/IProductDAO.java
 /home/kamil/Moje pliki/Java/Projekty/ModelStoreBeta1.0/src/main/java/Store/AppConfiguration.java

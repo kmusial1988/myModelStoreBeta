@@ -8,6 +8,9 @@ public interface IUserService {
     void addUser(User user);
 
     boolean registerUser (User user, String repeatedPassword);
-    User upgradeUser(User user);
+    void upgradeUser(User user);
 
+    User updateUserDB(User user);
+
+    User updateUserPass(User user);
 }

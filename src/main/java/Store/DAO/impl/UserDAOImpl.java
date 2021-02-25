@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 @Repository
 public class UserDAOImpl implements IUserDAO {
@@ -50,7 +51,7 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public User upgradeUser(User user) {
+    public void upgradeUser(User user) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
@@ -64,7 +65,18 @@ public class UserDAOImpl implements IUserDAO {
         } finally {
             session.close();
         }
-        return user;
+
+    }
+
+    @Override
+    public List<User> listUserDB(String login) {
+        return null;
+    }
+
+    @Override
+    public User updateUserPass(User user) {
+
+        return null;
     }
 
 

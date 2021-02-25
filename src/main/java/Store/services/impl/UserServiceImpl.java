@@ -45,10 +45,30 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User upgradeUser(User user) {
+    public void upgradeUser(User user) {
         this.userDAO.upgradeUser(user);
-        return user;
-    }
 
+    }
+    @Override
+    public User updateUserDB(User user) {
+        User userFromDB = userDAO.getUserByLogin(user.getLogin());
+        if(userFromDB.getLogin().equals(user.getLogin())){
+            userFromDB.setName(user.getName());
+            userFromDB.setSurname(user.getSurname());
+            return userFromDB;
+        }
+
+        return null;
+    }
+    @Override
+    public User updateUserPass(User user) {
+        User userFromDB = userDAO.getUserByLogin(user.getLogin());
+        if(userFromDB.getLogin().equals(user.getLogin())) {
+            userFromDB.setPassword(DigestUtils.md5Hex(user.getPassword()));
+            return  userFromDB;
+        }
+
+        return null;
+    }
 
 }

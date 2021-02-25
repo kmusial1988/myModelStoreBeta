@@ -3,6 +3,7 @@ Store/controllers/CommonController.class
 Store/DAO/IProductDAO.class
 Store/services/impl/BrandServiceImpl.class
 Store/services/impl/ProductServiceImpl.class
+Store/model/view/ChangePassData.class
 Store/session/SessionObject.class
 Store/controllers/BrandController.class
 Store/services/IUserService.class

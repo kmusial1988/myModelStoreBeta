@@ -1,6 +1,7 @@
 package Store.controllers;
 
 import Store.model.User;
+import Store.model.view.ChangePassData;
 import Store.services.IUserService;
 import Store.session.SessionObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class UserController {
     public String edit(Model model){
         if (this.sessionObject.isLogged()) {
             model.addAttribute("user", this.sessionObject.getUser());
-
+            model.addAttribute("passModel", new ChangePassData());
             model.addAttribute("info", this.sessionObject.getInfo());
             this.sessionObject.setInfo(null);
             return "edit";
@@ -70,10 +71,38 @@ public class UserController {
     public String changeData(@ModelAttribute User user) {
 
         user.setLogin(this.sessionObject.getUser().getLogin());
-        User updateUser = this.userService.upgradeUser(user);
+        User updateUser = this.userService.updateUserDB(user);
         this.sessionObject.setUser(updateUser);
-        this.userService.addUser(updateUser);
-//TODO zapis w bazie nie działa
+        this.userService.upgradeUser(updateUser);
+
+
+        return "redirect:/edit";
+    }
+
+    @RequestMapping(value = "/changePass", method = RequestMethod.POST)
+    public String changePass(@ModelAttribute ChangePassData changePassData) {
+
+        if(changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())){
+
+            //TODO nieprawidłowe hasło powtórzono
+
+        }
+
+        User user = new User();
+        user.setPassword(changePassData.getPass());
+        user.setLogin(this.sessionObject.getUser().getLogin());
+
+        User authenticateUser = this.userService.authenticate(user);
+        if(authenticateUser == null){
+
+            //TODO nieprawidłowe hasło
+        }
+
+        user.setPassword(changePassData.getNewPass());
+        User updateUser = this.userService.updateUserPass(user);
+        this.sessionObject.setUser(updateUser);
+        this.userService.upgradeUser(updateUser);
+
         return "redirect:/edit";
     }
 }
