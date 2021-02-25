@@ -5,6 +5,8 @@ import Store.DAO.IProductDAO;
 import Store.model.Brand;
 import Store.model.Product;
 import Store.services.IProductService;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +63,17 @@ public class ProductServiceImpl implements IProductService{
 
 
         return new ArrayList<>(result);
+    }
+
+    @Override
+    public Product getProductByBarcode(String barcode) {
+
+        return this.productDAO.getProductByBarcode(barcode);
+    }
+    @Override
+    public void updateProduct(Product product) {
+        this.productDAO.updateProduct(product);
+
     }
 
 

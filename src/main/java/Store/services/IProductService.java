@@ -10,5 +10,8 @@ public interface IProductService {
     List<Product> getProductByCategory(Product.Category category);
     List<Product> getProductByName(String name);
     List<Product> findProduct(String pattern);
+    Product getProductByBarcode(String barcode);
 
+
+    void updateProduct(Product product);
 }

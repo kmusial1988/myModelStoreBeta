@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>myModelStore</title>
+    <link rel="stylesheet" href="/common-controls.css">
     <link rel="stylesheet" href="/add-product.css">
 
     <link rel="stylesheet" href="/register.css">
 
     <link rel="stylesheet" href="/register-brand.css">
 
-    <link rel="stylesheet" href="/common-controls.css">
 </head>
 <body>
 <div th:replace="template.html :: logo"></div>
@@ -22,14 +22,14 @@
     <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
     <input type="text" placeholder="name" class="text-input" th:field="${product.name}">
 
-    <select th:field="${product.brand.id}">
+    <select th:field="${product.brand.id}" class="text-input">
 
-        <option th:each="brand : ${brands}" th:value="${brand.id}"  th:text="${brand.name}"></option>
+        <option th:each="brand : ${brands}" th:value="${brand.id}"  th:text="${brand.name}" ></option>
 
     </select>
 
     <input type="text" placeholder="barcode" class="text-input" th:field="${product.barcode}">
-    <select th:field="${product.box}">
+    <select th:field="${product.box}" class="text-input">
         <option value="WEIGHT">WEIGHT</option>
         <option value="PIECES">PIECES</option>
         <option value="LITERS">LITERS</option>
@@ -37,7 +37,7 @@
     </select>
     <input type="text" placeholder="pieces" class="text-input" th:field="${product.pieces}">
     <input type="text" placeholder="price" class="text-input" th:field="${product.price}">
-    <select th:field="${product.category}">
+    <select th:field="${product.category}" class="text-input">
         <option value="CAT1">CAT1</option>
         <option value="CAT2">CAT2</option>
         <option value="CAT3">CAT3</option>

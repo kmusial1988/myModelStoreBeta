@@ -10,10 +10,9 @@
     <a href="/allProduct">Produkt </a>
     <a href="/allBrand">Marka</a>
     <a href="/contact">Kontakt</a>
-    <a href="/logout">Wyloguj</a>
-    <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
     <a href="/edit" th:text="${user.login}" ></a>
     <a href="/basket">Koszyk</a>
+    <a href="/logout">Wyloguj</a>
 </div>
 
 <a href="/main" alt="logo" id="logo" th:fragment="logo"></a>
@@ -21,22 +20,20 @@
 
 <div id="brand" th:fragment="brand">
     <a href="/main">Strona główna</a>
-    <a href="/addBrand">Dodaj Marke</a>
-    <a href="/logout">Wyloguj</a>
-    <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
+    <a href="/addBrand" th:if="${user.role.name() == 'ADMIN' }">Dodaj Marke</a>
     <a href="/edit" th:text="${user.login}" ></a>
     <a href="/basket">Koszyk</a>
+    <a href="/logout">Wyloguj</a>
 </div>
 
 
 <div id="product" th:fragment="product">
     <a href="/main">Strona główna</a>
     <a href="/allProduct">Produkt </a>
-    <a href="/addProduct">Dodaj Produkt</a>
-    <a href="/logout">Wyloguj</a>
-    <!--<a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>-->
+    <a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>
     <a href="/edit" th:text="${user.login}" ></a>
     <a href="/basket">Koszyk</a>
+    <a href="/logout">Wyloguj</a>
 </div>
 
 

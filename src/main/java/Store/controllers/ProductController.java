@@ -27,25 +27,6 @@ public class ProductController {
     IBrandService brandService;
 
 
-
-    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
-    public String showAddProduct(Model model) {
-        model.addAttribute("product", new Product());
-        model.addAttribute("info", this.sessionObject.getInfo());
-        model.addAttribute("brands", this.brandService.getAllBrands());
-        model.addAttribute("user", this.sessionObject.getUser());
-
-        return "addProduct";
-    }
-
-    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
-    public String addProduct(@ModelAttribute Product product, Model model) {
-        model.addAttribute("user", this.sessionObject.getUser());
-        this.productService.addProduct(product);
-
-        return "redirect:/addProduct";
-    }
-
     @RequestMapping(value = "/allProduct", method = RequestMethod.GET)
     public String showAllProduct(Model model, @RequestParam(defaultValue = "none") String subpage) {
 
@@ -68,9 +49,9 @@ public class ProductController {
                     model.addAttribute("products", this.productService.getProductByCategory(Product.Category.CAT4));
                     break;
                 default:
-                    if(this.sessionObject.getFilter() == null) {
+                    if (this.sessionObject.getFilter() == null) {
                         model.addAttribute("products", this.productService.allProductList());
-                    }else {
+                    } else {
                         model.addAttribute("products", this.productService.findProduct(this.sessionObject.getFilter()));
                         model.addAttribute("pattern", this.sessionObject.getFilter());
                     }
@@ -84,7 +65,6 @@ public class ProductController {
             return "redirect:/login";
         }
     }
-
 
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
@@ -101,5 +81,45 @@ public class ProductController {
             return "redirect:/login";
         }
 
+    }
+
+    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+    public String showAddProduct(Model model) {
+        if (sessionObject.isLogged()) {
+            model.addAttribute("product", new Product());
+            model.addAttribute("info", this.sessionObject.getInfo());
+            model.addAttribute("brands", this.brandService.getAllBrands());
+            model.addAttribute("user", this.sessionObject.getUser());
+
+            return "addProduct";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+    public String addProduct(@ModelAttribute Product product, Model model) {
+        if (sessionObject.isLogged()) {
+            model.addAttribute("user", this.sessionObject.getUser());
+            Product productFromDB = this.productService.getProductByBarcode(product.getBarcode());
+
+            if (productFromDB != null) {
+                productFromDB.setPieces(productFromDB.getPieces() + product.getPieces());
+                this.productService.updateProduct(productFromDB);
+                this.sessionObject.setInfo("Zwiekszono ilość sztuk !!!");
+
+            } else {
+                if (product.getName().equals("") || product.getBarcode().equals("") || product.getPieces() == 0 || product.getPrice() == 0.0) {
+                    this.sessionObject.setInfo("Uzupełnij dane !!!");
+                } else {
+
+                    this.productService.addProduct(product);
+                    this.sessionObject.setInfo("Dodano nowy produkt !!!");
+                }
+            }
+            return "redirect:/addProduct";
+        } else {
+            return "redirect:/login";
+        }
     }
 }

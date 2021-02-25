@@ -37,6 +37,25 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public void updateProduct(Product product) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(product);
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+
+    }
+
+
+    @Override
     public Product getProductByBarcode(String barcode) {
         try {
             Session session = sessionFactory.openSession();

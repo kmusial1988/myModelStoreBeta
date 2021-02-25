@@ -24,13 +24,16 @@ public class BrandController {
 
     @RequestMapping(value = "/addBrand", method = RequestMethod.GET)
     public String showAddBrand(Model model) {
-
-
+        if (sessionObject.isLogged()) {
         model.addAttribute("brand", new Brand());
         model.addAttribute("info", this.sessionObject.getInfo());
         model.addAttribute("user", this.sessionObject.getUser());
 
         return "addBrand";
+        } else {
+
+            return "redirect:/login";
+        }
     }
 
     @RequestMapping(value = "/addBrand", method = RequestMethod.POST)
@@ -42,11 +45,15 @@ public class BrandController {
     }
     @RequestMapping(value = "/allBrand", method = RequestMethod.GET)
     public String showAllBrand(Model model) {
-
+        if (sessionObject.isLogged()) {
         List<Brand> brands = this.brandService.getAllBrands();
         model.addAttribute("brands", brands);
         model.addAttribute("user", this.sessionObject.getUser());
         return "allBrand";
+    } else {
+
+        return "redirect:/login";
+    }
     }
 
     @RequestMapping(value = "/filterBrand", method = RequestMethod.POST)
@@ -54,12 +61,16 @@ public class BrandController {
     //TODO nie dziala
 
     public String filterBrand(@RequestParam String patternBrand, Model model) {
-
+        if (sessionObject.isLogged()) {
         List<Brand> brands =this.brandService.findBrand(patternBrand);
 
         model.addAttribute("brands", brands);
 
         return "allBrand";
+    } else {
+
+        return "redirect:/login";
+        }
     }
 
 }
