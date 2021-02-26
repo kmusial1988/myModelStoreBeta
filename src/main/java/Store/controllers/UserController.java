@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class UserController {
@@ -33,11 +35,9 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute User user,
                            @RequestParam String password2, Model model,
-    @RequestParam String login) {
-        /* TODO Pattern compiledPattern = Pattern.compile(".*[0-9]+.*");
-        Matcher matcher = compiledPattern.matcher(user.getPassword());
-        matcher.matches();
-        */
+                           @RequestParam String login) {
+
+
         if (!user.getPassword().equals(password2)) {
             this.sessionObject.setInfo("Nieprawidłowo powtórzone hasła !!!");
             return "redirect:/register";
@@ -50,30 +50,30 @@ public class UserController {
             return "redirect:/register";
         }else {*/
 
-            boolean registerResult =
-                    this.userService.registerUser(user, password2);
+        boolean registerResult =
+                this.userService.registerUser(user, password2);
 
 
-            if (registerResult) {
-                this.sessionObject.setInfo("Urzytkownik dodany !!!");
-                return "redirect:/login";
-            } else {
-                this.sessionObject.setInfo("Nieprawidłowe dane1 !!!");
-                return "redirect:/register";
-            }
+        if (registerResult) {
+            this.sessionObject.setInfo("Urzytkownik dodany !!!");
+            return "redirect:/login";
+        } else {
+            this.sessionObject.setInfo("Nieprawidłowe dane1 !!!");
+            return "redirect:/register";
+        }
 
 
     }
 
-    @RequestMapping(value = "/edit",method = RequestMethod.GET)
-    public String edit(Model model){
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit(Model model) {
         if (this.sessionObject.isLogged()) {
             model.addAttribute("user", this.sessionObject.getUser());
             model.addAttribute("passModel", new ChangePassData());
             model.addAttribute("info", this.sessionObject.getInfo());
             this.sessionObject.setInfo(null);
             return "edit";
-        }else {
+        } else {
             return "redirect:/login";
         }
     }
@@ -94,10 +94,10 @@ public class UserController {
     @RequestMapping(value = "/changePass", method = RequestMethod.POST)
     public String changePass(@ModelAttribute ChangePassData changePassData, Model model) {
 
-        if(!changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())){
+        if (!changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())) {
 
-           this.sessionObject.setInfo( "Źle powtórzone nowe hasło !!!");
-           return "redirect:/edit";
+            this.sessionObject.setInfo("Źle powtórzone nowe hasło !!!");
+            return "redirect:/edit";
 
         }
 
@@ -106,9 +106,9 @@ public class UserController {
         user.setLogin(this.sessionObject.getUser().getLogin());
 
         User authenticateUser = this.userService.authenticate(user);
-        if(authenticateUser == null){
+        if (authenticateUser == null) {
 
-            this.sessionObject.setInfo( "Nieprawidłowe hasło !!!");
+            this.sessionObject.setInfo("Nieprawidłowe hasło !!!");
             return "redirect:/edit";
         }
 

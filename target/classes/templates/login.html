@@ -9,10 +9,10 @@
 </head>
 <body>
 <div th:replace="template.html :: logo"></div>
-<form id="login-form" method="post"  name="loginForm">
+<form id="login-form" method="post"  name="loginForm" onsubmit="return validate()">
     <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
     <input type="text" placeholder="Login"class="text-input" th:field="*{user.login}" name="login">
-    <input type="password" placeholder="Hasło" class="text-input" th:field="*{user.password}" name="pass">
+    <input type="password" placeholder="Hasło" class="text-input" th:field="*{user.password}" name="password">
     </br>
     <input type="submit" value="Zaloguj" id="form-submit">
     </br>

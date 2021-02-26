@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class AuthenticationController {
@@ -32,8 +34,18 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-
     public String login(@ModelAttribute User user, Model model) {
+
+        Pattern regexPattern = Pattern.compile(".{3}.*");
+        Matcher loginMatcher = regexPattern.matcher(user.getLogin());
+        Matcher passMatcher = regexPattern.matcher(user.getPassword());
+
+        if (!loginMatcher.matches() || !passMatcher.matches()) {
+            this.sessionObject.setInfo("Nieprawidłowe Dane validate!!!");
+            return "redirect:/login";
+        }
+
+
         model.addAttribute("info", this.sessionObject.getInfo());
 
         this.sessionObject.setUser(this.userService.authenticate(user));
