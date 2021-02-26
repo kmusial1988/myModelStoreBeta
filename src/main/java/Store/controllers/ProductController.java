@@ -104,9 +104,10 @@ public class ProductController {
             Product productFromDB = this.productService.getProductByBarcode(product.getBarcode());
 
             if (productFromDB != null) {
-                productFromDB.setPieces(productFromDB.getPieces() + product.getPieces());
-                this.productService.updateProduct(productFromDB);
-                this.sessionObject.setInfo("Zwiekszono ilość sztuk !!!");
+                /*productFromDB.setPieces(productFromDB.getPieces() + product.getPieces());
+                this.productService.updateProduct(productFromDB);*/
+                this.sessionObject.setInfo("Produkt Już istnieje !!!");
+                return "redirect:/addProduct";
 
             } else {
                 if (product.getName().equals("") || product.getBarcode().equals("") || product.getPieces() == 0 || product.getPrice() == 0.0) {

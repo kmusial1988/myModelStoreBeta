@@ -5,18 +5,20 @@
     <title>myModelStore</title>
     <link rel="stylesheet" href="/register.css">
     <link rel="stylesheet" href="/common-controls.css">
+    <script src="registerValidate.js"></script>
+
 </head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div th:replace="template.html :: logo"></div>
-<form method="POST" id="register-form" th:object="${user}">
+<form method="POST" id="register-form" th:object="${user}" name="registerForm" onsubmit="return validateRegister()">
     <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
-    <input type="text" placeholder="Imie" class="text-input" th:field="*{name}">
-    <input type="text" placeholder="Nazwisko" class="text-input" th:field="*{surname}">
-    <input type="text" placeholder="Login" class="text-input" th:field="*{login}">
-    <input type="password" placeholder="Hasło" class="text-input" th:field="*{password}">
+    <input type="text" placeholder="Imie" class="text-input" th:field="*{name}" name="name">
+    <input type="text" placeholder="Nazwisko" class="text-input" th:field="*{surname}" name="surname">
+    <input type="text" placeholder="Login" class="text-input" th:field="*{login}" name="login">
+    <input type="password" placeholder="Hasło" class="text-input" th:field="*{password}" name="password">
     <input type="password" placeholder=" Powtórz hasło" class="text-input" name="password2">
     </br>
     <input type="submit" value="OK" id="form-submit" >

@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <title>myModelStore</title>
     <link rel="stylesheet" href="/add-product.css">
-
     <link rel="stylesheet" href="/register.css">
-
     <link rel="stylesheet" href="/common-controls.css">
+    <script src="addBrandValidate.js"></script>
 </head>
 <body>
 <div th:replace="template.html :: logo"></div>
 <div th:replace="template.html :: menu"></div>
 
-<form method="post" id="register-form" th:object="${brand}">
+<form method="post" id="register-form" th:object="${brand}" name="addBrandForm" onsubmit="return validateAddBrand()">
     <div th:if="${info !=null}" th:text ="${info}" id="info"></div>
 
-    <input type="text" placeholder="Name" class="text-input" th:field="${brand.name}">
-    <input type="text" placeholder="Shortcut" class="text-input" th:field="${brand.Shortcut}">
+    <input type="text" placeholder="Name" class="text-input" th:field="${brand.name}" name="name">
+    <input type="text" placeholder="Shortcut" class="text-input" th:field="${brand.Shortcut}" name="Shortcut">
 
 
     <input type="submit" value="OK" id="form-submit" >
