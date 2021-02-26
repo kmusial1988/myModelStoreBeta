@@ -36,4 +36,16 @@ public class BrandServiceImpl implements IBrandService {
     public List<Brand> findBrandBrand(String patternBrand) {
         return this.brandDAO.findBrand(patternBrand);
     }
+
+    @Override
+    public Brand getBrandByShortcut(String Shortcut) {
+        return this.brandDAO.getBrandByShortcut(Shortcut);
+    }
+
+    @Override
+    public Brand getBrandByName(String name) {
+        return this.brandDAO.getBrandByName(name);
+    }
+
+
 }

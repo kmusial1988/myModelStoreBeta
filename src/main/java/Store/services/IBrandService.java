@@ -10,6 +10,7 @@ public interface IBrandService {
     List<Brand> getAllBrands();
     List<Brand> findBrand(String pattern);
     List<Brand> findBrandBrand(String patternBrand);
+    Brand getBrandByShortcut(String Shortcut);
 
-
+    Brand getBrandByName(String name);
 }

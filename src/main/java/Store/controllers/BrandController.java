@@ -25,11 +25,11 @@ public class BrandController {
     @RequestMapping(value = "/addBrand", method = RequestMethod.GET)
     public String showAddBrand(Model model) {
         if (sessionObject.isLogged()) {
-        model.addAttribute("brand", new Brand());
-        model.addAttribute("info", this.sessionObject.getInfo());
-        model.addAttribute("user", this.sessionObject.getUser());
+            model.addAttribute("brand", new Brand());
+            model.addAttribute("info", this.sessionObject.getInfo());
+            model.addAttribute("user", this.sessionObject.getUser());
 
-        return "addBrand";
+            return "addBrand";
         } else {
 
             return "redirect:/login";
@@ -38,22 +38,48 @@ public class BrandController {
 
     @RequestMapping(value = "/addBrand", method = RequestMethod.POST)
     public String addBrand(@ModelAttribute Brand brand, Model model) {
-        model.addAttribute("user", this.sessionObject.getUser());
-        this.brandService.addBrand(brand);
+        if (sessionObject.isLogged()) {
+            model.addAttribute("user", this.sessionObject.getUser());
+            Brand brandFromDB = this.brandService.getBrandByName(brand.getName());
+            Brand brandForDB2 = this.brandService.getBrandByShortcut(brand.getShortcut());
 
-        return "redirect:/addBrand";
+            if(brandFromDB !=null || brandForDB2 !=null) {
+                this.sessionObject.setInfo("Marka już istnieje !!!!");
+            }else{
+                if(brand.getName().equals("") || brand.getShortcut().equals("")){
+                    this.sessionObject.setInfo("Uzupełnij dane !!!");
+                }else{
+                    this.brandService.addBrand(brand);
+                    this.sessionObject.setInfo("Dodano nowy produkt !!!");
+                }
+            }
+
+
+            return "redirect:/addBrand";
+        } else {
+
+            return "redirect:/login";
+        }
+
     }
+
+
+
+
+
     @RequestMapping(value = "/allBrand", method = RequestMethod.GET)
     public String showAllBrand(Model model) {
         if (sessionObject.isLogged()) {
-        List<Brand> brands = this.brandService.getAllBrands();
-        model.addAttribute("brands", brands);
-        model.addAttribute("user", this.sessionObject.getUser());
-        return "allBrand";
-    } else {
+            List<Brand> brands = this.brandService.getAllBrands();
+            model.addAttribute("brands", brands);
+            model.addAttribute("user", this.sessionObject.getUser());
+            return "allBrand";
+        } else {
 
-        return "redirect:/login";
-    }
+            return "redirect:/login";
+        }
+
+
     }
 
     @RequestMapping(value = "/filterBrand", method = RequestMethod.POST)
@@ -62,16 +88,18 @@ public class BrandController {
 
     public String filterBrand(@RequestParam String patternBrand, Model model) {
         if (sessionObject.isLogged()) {
-        List<Brand> brands =this.brandService.findBrand(patternBrand);
+            List<Brand> brands = this.brandService.findBrand(patternBrand);
 
-        model.addAttribute("brands", brands);
+            model.addAttribute("brands", brands);
 
-        return "allBrand";
-    } else {
+            return "allBrand";
+        } else {
 
-        return "redirect:/login";
+            return "redirect:/login";
         }
     }
+
+
 
 }
 

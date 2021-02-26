@@ -2,6 +2,7 @@ package Store.DAO.impl;
 
 import Store.DAO.IBrandDAO;
 import Store.model.Brand;
+import Store.model.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
@@ -46,6 +48,37 @@ public class BrandDAOImpl implements IBrandDAO {
         session.close();
 
         return result;
+    }
+
+    @Override
+    public Brand getBrandByName(String name) {
+        try {
+        Session session = this.sessionFactory.openSession();
+        Query<Brand> query = session
+                .createQuery("FROM Store.model.Brand WHERE name = :name ");
+        query.setParameter("name", name);
+        Brand brand = query.getSingleResult();
+        session.close();
+        return brand;
+        } catch (NoResultException e) {
+            return null;
+        }
+
+    }
+
+    @Override
+    public Brand getBrandByShortcut(String Shortcut) {
+        try {
+        Session session = this.sessionFactory.openSession();
+        Query<Brand> query = session
+                .createQuery("FROM Store.model.Brand WHERE Shortcut = :Shortcut ");
+        query.setParameter("Shortcut", Shortcut);
+            Brand brand = query.getSingleResult();
+            session.close();
+            return brand;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
