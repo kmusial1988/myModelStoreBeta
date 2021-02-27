@@ -11,6 +11,9 @@ public interface IProductDAO {
     void updateProduct(Product product);
 
     Product getProductByBarcode(String barcode);
+
+    Product getProductById(int id);
+
     List<Product> allProductList();
     List<Product> getProductByCategory(Product.Category category);
     List<Product> getProductByName(String name);

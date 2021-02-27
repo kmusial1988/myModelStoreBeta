@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>myModelStore</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/common-controls.css">
+</head>
+<body>
+
+
+<div th:replace="template.html :: logo"></div>
+
+
+<div id="content">
+    <div class="basket-row ">
+        <div class="title">Tytuł</div>
+        <div class="pieces">Ilość</div>
+        <div class="price1">Cena za sztukę</div>
+        <div class="price2">Cena</div>
+
+    </div>
+
+    <th:block th:each="product : ${products}">
+
+        <div class="basket-row product">
+            <div class="title" th:text="${product.title}" ></div>
+            <div class="pieces" th:text="${product.pieces}" ></div>
+            <div class="price1" th:text="${product.price}" ></div>
+            <div class="price2" th:text="${product.price * product.pieces}" ></div>
+
+        </div>
+
+    </th:block>
+
+    <div class="basket-row">
+        <div class="title"></div>
+        <div class="pieces"></div>
+        <div class="price1">Razem</div>
+        <div class="price2" th:text="${bill}"></div>
+
+    </div>
+
+
+</div>
+</body>
+</html>

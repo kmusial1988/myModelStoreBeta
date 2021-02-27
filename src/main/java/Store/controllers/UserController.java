@@ -42,7 +42,7 @@ public class UserController {
             this.sessionObject.setInfo("Nieprawidłowo powtórzone hasła !!!");
             return "redirect:/register";
         }
-//TODO powtarzający sie login
+//TODO powtarzający sie login i validacja po stronie java
        /* boolean checkExistLogin = this.userService.checkLogin(user, login);
 
         if(checkExistLogin){

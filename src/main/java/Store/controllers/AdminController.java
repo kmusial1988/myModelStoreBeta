@@ -94,5 +94,6 @@ public class AdminController {
 
         return "redirect:/main";
     }
+    //TODO dodać Warunki w html do validacji
 
 }

@@ -23,6 +23,7 @@
         <mapping class="Store.model.User"/>
         <mapping class="Store.model.Brand"/>
         <mapping class="Store.model.Product"/>
+        <mapping class="Store.model.Basket"/>
 
 
 

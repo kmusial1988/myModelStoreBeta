@@ -30,8 +30,8 @@
                 <span th:text="'Ilość: ' + ${product.pieces}"></span>
                 <span th:text="'Kod kreskowy: ' + ${product.barcode}"></span>
                 <span th:text="'Cena: ' + ${product.price}"></span>
-                <!--<a th:href="@{/addToBasket/{isbn}(isbn=${product.isbn})} " class="buy"></a>
-                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editVinyl/{isbn}(isbn=${vinyl.isbn})} " class="edit"></a>-->
+                <a th:href="@{/addToBasket/{id}(id=${product.id})} " class="buy"></a>
+                <a th:if="${user.role.name() == 'ADMIN' }" th:href="@{/editProduct/{barcode}(barcode=${product.barcode})} " class="edit"></a>
             </div>
         </div>
 

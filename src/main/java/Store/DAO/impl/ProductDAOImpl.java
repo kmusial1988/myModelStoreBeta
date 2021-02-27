@@ -71,6 +71,21 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public Product getProductById(int id) {
+        try {
+            Session session = sessionFactory.openSession();
+            Query<Product> query = session
+                    .createQuery("FROM Store.model.Product WHERE id = :id");
+            query.setParameter("id", id);
+            Product product = query.getSingleResult();
+            session.close();
+            return product;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<Product> allProductList() {
 
 

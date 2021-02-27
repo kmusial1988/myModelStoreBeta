@@ -1,0 +1,39 @@
+body{
+background-color: #eceff1
+}
+#content{
+margin: 50px 200px 15px 200px;
+text-align: center;
+}
+
+.basket-row div{
+display: inline-block;
+font-size: 20;
+margin: 10px;
+
+}
+
+.vinyl {
+border-top: 2px solid black;
+}
+
+.title {
+width: 45%;
+border-right: 2px solid black;
+}
+
+.pieces  {
+width: 10%;
+border-right: 2px solid black;
+}
+
+.price1 {
+width: 15%;
+border-right: 2px solid black;
+}
+
+.price2 {
+width: 15%;
+
+}
+

@@ -1,19 +1,20 @@
 package Store.services.impl;
 
+import Store.DAO.IBasketDAO;
 import Store.DAO.IBrandDAO;
 import Store.DAO.IProductDAO;
+import Store.model.Basket;
 import Store.model.Brand;
 import Store.model.Product;
 import Store.services.IProductService;
+import Store.session.SessionObject;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.annotation.Resource;
+import java.util.*;
 
 @Service
 public class ProductServiceImpl implements IProductService{
@@ -23,6 +24,12 @@ public class ProductServiceImpl implements IProductService{
 
     @Autowired
     IBrandDAO brandDAO;
+
+    @Autowired
+    IBasketDAO basketDAO;
+
+    @Resource
+    SessionObject sessionObject;
 
 
     @Override
@@ -70,11 +77,35 @@ public class ProductServiceImpl implements IProductService{
 
         return this.productDAO.getProductByBarcode(barcode);
     }
+
+    @Override
+    public Product getProductById(int id) {
+        return this.productDAO.getProductById(id);
+    }
+
     @Override
     public void updateProduct(Product product) {
         this.productDAO.updateProduct(product);
 
     }
+
+    @Override
+    public void addOrUpdateToBasket(Basket basket) {
+        this.basketDAO.addOrUpdateToBasket(basket);
+
+    }
+    /*@Override
+    public void addOrUpdateToBasket(String barcode) {
+        Product product = this.productDAO.getProductByBarcode(barcode);
+        List<Product> basket = sessionObject.getBasket();
+        boolean isProductInBasket = basket.contains(product);
+
+        if(isProductInBasket) {
+            basket.add(product);
+        }
+
+    }*/
+
 
 
 }

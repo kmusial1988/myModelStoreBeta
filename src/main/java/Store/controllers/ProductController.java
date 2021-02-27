@@ -59,6 +59,7 @@ public class ProductController {
             }
 
             model.addAttribute("user", this.sessionObject.getUser());
+            this.sessionObject.setLastAddress("/allProduct");
             return "allProduct";
         } else {
 
@@ -74,6 +75,7 @@ public class ProductController {
             List<Product> products = this.productService.findProduct(pattern);
             model.addAttribute("products", products);
             model.addAttribute("user", this.sessionObject.getUser());
+            this.sessionObject.setLastAddress("/filter");
 
 
             return "redirect:/allProduct";
@@ -90,6 +92,7 @@ public class ProductController {
             model.addAttribute("info", this.sessionObject.getInfo());
             model.addAttribute("brands", this.brandService.getAllBrands());
             model.addAttribute("user", this.sessionObject.getUser());
+
 
             return "addProduct";
         } else {
