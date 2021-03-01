@@ -17,5 +17,4 @@ public interface IProductService {
 
     void updateProduct(Product product);
 
-    void addOrUpdateToBasket(Basket basket);
 }

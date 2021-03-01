@@ -114,6 +114,7 @@ public class Basket {
     public enum Status {
         RESERVED,
         BOUGHT,
+        STOCK
 
     }
 }

@@ -1,6 +1,5 @@
 package Store.services.impl;
 
-import Store.DAO.IBasketDAO;
 import Store.DAO.IBrandDAO;
 import Store.DAO.IProductDAO;
 import Store.model.Basket;
@@ -8,8 +7,6 @@ import Store.model.Brand;
 import Store.model.Product;
 import Store.services.IProductService;
 import Store.session.SessionObject;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +22,6 @@ public class ProductServiceImpl implements IProductService{
     @Autowired
     IBrandDAO brandDAO;
 
-    @Autowired
-    IBasketDAO basketDAO;
 
     @Resource
     SessionObject sessionObject;
@@ -89,11 +84,7 @@ public class ProductServiceImpl implements IProductService{
 
     }
 
-    @Override
-    public void addOrUpdateToBasket(Basket basket) {
-        this.basketDAO.addOrUpdateToBasket(basket);
 
-    }
     /*@Override
     public void addOrUpdateToBasket(String barcode) {
         Product product = this.productDAO.getProductByBarcode(barcode);

@@ -1,12 +1,15 @@
 package Store.session;
 
+import Store.model.Basket;
 import Store.model.Product;
 import Store.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Component
@@ -17,8 +20,9 @@ public class SessionObject {
     private User user =null;
     private String info = null;
     private String filter = null;
-    private List<Product> basket = new ArrayList<>();
+    private Map<Product, Integer > basket = new HashMap<>();
     private String lastAddress;
+    private String lastFindPattern;
 
     public String getFilter() {
         return filter;
@@ -50,11 +54,11 @@ public class SessionObject {
         this.user = user;
     }
 
-    public List<Product> getBasket() {
+    public Map<Product, Integer> getBasket() {
         return basket;
     }
 
-    public void setBasket(List<Product> basket) {
+    public void setBasket(Map<Product, Integer> basket) {
         this.basket = basket;
     }
 
@@ -64,6 +68,14 @@ public class SessionObject {
 
     public void setLastAddress(String lastAddress) {
         this.lastAddress = lastAddress;
+    }
+
+    public String getLastFindPattern() {
+        return lastFindPattern;
+    }
+
+    public void setLastFindPattern(String lastFindPattern) {
+        this.lastFindPattern = lastFindPattern;
     }
 }
 

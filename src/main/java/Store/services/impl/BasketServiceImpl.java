@@ -1,23 +1,18 @@
 package Store.services.impl;
 
-import Store.DAO.IBasketDAO;
 import Store.DAO.IProductDAO;
-import Store.model.Basket;
 import Store.model.Product;
-import Store.model.User;
 import Store.services.IBasketService;
 import Store.session.SessionObject;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @Service
 public class BasketServiceImpl implements IBasketService {
 
-    @Autowired
-    IBasketDAO basketDAO;
 
     @Autowired
     IProductDAO productDAO;
@@ -28,13 +23,16 @@ public class BasketServiceImpl implements IBasketService {
 
     @Override
     public void addProductToBasket(int id) {
+
         Product product = this.productDAO.getProductById(id);
+        Map<Product, Integer> basket = sessionObject.getBasket();
+        boolean isBookInBasket = sessionObject.getBasket().containsKey(product);
+        if(isBookInBasket){
+            basket.put(product, basket.get(product) +1);
 
+        }else {
+            basket.put(product, 1);
+        }
+        System.out.println(basket);
     }
-
-    @Override
-    public Basket getProductByBarcode(String barcode) {
-        return this.basketDAO.getProductByBarcode(barcode);
-    }
-
 }

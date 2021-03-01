@@ -21,6 +21,8 @@ public class Product {
     private Category category;
     @Column(nullable = false, length = 5)
     private double price;
+    @Enumerated(EnumType.STRING)
+    private Basket.Status status;
 
     public int getId() {
         return id;
@@ -86,6 +88,14 @@ public class Product {
         this.price = price;
     }
 
+    public Basket.Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Basket.Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -97,6 +107,7 @@ public class Product {
                 ", pieces=" + pieces +
                 ", category=" + category +
                 ", price=" + price +
+                ", status=" + status +
                 '}';
     }
 
@@ -113,6 +124,12 @@ public class Product {
         CAT2,
         CAT3,
         CAT4,
+    }
+    public enum Status {
+        STOCK,
+        RESERVED,
+        BOUGHT,
+
     }
 
     @Override

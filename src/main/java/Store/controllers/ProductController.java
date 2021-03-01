@@ -1,5 +1,6 @@
 package Store.controllers;
 
+import Store.model.Basket;
 import Store.model.Product;
 import Store.services.IBrandService;
 import Store.services.IProductService;
@@ -73,6 +74,23 @@ public class ProductController {
         if (sessionObject.isLogged()) {
             this.sessionObject.setFilter(pattern);
             List<Product> products = this.productService.findProduct(pattern);
+            this.sessionObject.setLastFindPattern(pattern);
+            model.addAttribute("products", products);
+            model.addAttribute("user", this.sessionObject.getUser());
+            this.sessionObject.setLastAddress("/filter");
+
+
+            return "redirect:/allProduct";
+        } else {
+            return "redirect:/login";
+        }
+
+    }
+    @RequestMapping(value = "/filter", method = RequestMethod.GET)
+    public String filterAfterRedirect(Model model) {
+        if (sessionObject.isLogged()) {
+            this.sessionObject.setFilter(sessionObject.getLastFindPattern());
+            List<Product> products = this.productService.findProduct(sessionObject.getLastFindPattern());
             model.addAttribute("products", products);
             model.addAttribute("user", this.sessionObject.getUser());
             this.sessionObject.setLastAddress("/filter");
@@ -116,7 +134,7 @@ public class ProductController {
                 if (product.getName().equals("") || product.getBarcode().equals("") || product.getPieces() == 0 || product.getPrice() == 0.0) {
                     this.sessionObject.setInfo("Uzupełnij dane !!!");
                 } else {
-
+                    product.setStatus(Basket.Status.STOCK);
                     this.productService.addProduct(product);
                     this.sessionObject.setInfo("Dodano nowy produkt !!!");
                 }

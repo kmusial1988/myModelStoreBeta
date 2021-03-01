@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>myModelStore</title>
-    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/common-controls.css">
+    <link rel="stylesheet" href="/basket.css">
 </head>
 <body>
 
@@ -14,20 +14,23 @@
 
 <div id="content">
     <div class="basket-row ">
-        <div class="title">Tytuł</div>
-        <div class="pieces">Ilość</div>
+        <div class="title">Nazwa</div>
+        <div class="pieces">Marka</div>
         <div class="price1">Cena za sztukę</div>
         <div class="price2">Cena</div>
+        <div class="price2">Ilość</div>
+
 
     </div>
 
-    <th:block th:each="product : ${products}">
+    <th:block th:each="productEntry : ${basket}">
 
         <div class="basket-row product">
-            <div class="title" th:text="${product.title}" ></div>
-            <div class="pieces" th:text="${product.pieces}" ></div>
-            <div class="price1" th:text="${product.price}" ></div>
-            <div class="price2" th:text="${product.price * product.pieces}" ></div>
+            <div  class="title" th:text="${productEntry.key.name}" ></div>
+            <div  class="pieces" th:text="${productEntry.key.brand.name}" ></div>
+            <div  class="price1" th:text="${productEntry.key.price}" ></div>
+            <div  class="price2" th:text="${productEntry.key.price * productEntry.value}" ></div>
+            <div  class="title" th:text="${productEntry.value}" ></div>
 
         </div>
 
