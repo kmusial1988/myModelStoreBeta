@@ -26,11 +26,11 @@
     <th:block th:each="productEntry : ${basket}">
 
         <div class="basket-row product">
-            <div  class="title" th:text="${productEntry.key.name}" ></div>
-            <div  class="pieces" th:text="${productEntry.key.brand.name}" ></div>
-            <div  class="price1" th:text="${productEntry.key.price}" ></div>
-            <div  class="price2" th:text="${productEntry.key.price * productEntry.value}" ></div>
-            <div  class="title" th:text="${productEntry.value}" ></div>
+            <div  class="title" th:text="${productEntry.name}" ></div>
+            <div  class="pieces" th:text="${productEntry.brand.name}" ></div>
+            <div  class="price1" th:text="${productEntry.price}" ></div>
+            <div  class="price2" th:text="${productEntry.price * productEntry.pieces}" ></div>
+            <div  class="title" th:text="${productEntry.pieces}" ></div>
 
         </div>
 

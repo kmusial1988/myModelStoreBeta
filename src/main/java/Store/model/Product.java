@@ -24,6 +24,22 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Basket.Status status;
 
+    public Product() {
+    }
+
+    public Product(int id, String name, Brand brand, String barcode, Box box, int pieces, Category category, double price, Basket.Status status) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.barcode = barcode;
+        this.box = box;
+        this.pieces = pieces;
+        this.category = category;
+        this.price = price;
+        this.status = status;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -145,5 +161,11 @@ public class Product {
     @Override
     public int hashCode() {
         return this.id;
+    }
+
+    @Override
+    public Object clone()  {
+        return new Product(this.id, this.name, this.brand, this.barcode, this.box, this.pieces, this.category, this.price, this.status);
+
     }
 }

@@ -29,13 +29,47 @@ public class BasketController {
     @Autowired
     IProductService productService;
 
+    @Autowired
+    IProductDAO productDAO;
+
     @Resource
     SessionObject sessionObject;
 
 
+    @RequestMapping(value = "/addToBasket/{productBarcode}", method = RequestMethod.GET)
+    public String addProductToBasket(@PathVariable String productBarcode, Model model) {
+
+        for (Product product : this.sessionObject.getBasketProduct()) {
+            if (product.getBarcode().equals(productBarcode)) {
+                product.setPieces(product.getPieces() + 1);
+            return "redirect:/allProduct";
+            }
+        }
+
+        Product product = (Product) this.productDAO.getProductByBarcode(productBarcode).clone();
+        product.setPieces(1);
+        this.sessionObject.getBasketProduct().add(product);
+
+        return "redirect:/allProduct";
+    }
 
 
-    @RequestMapping(value = "/addToBasket/{productId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/basket", method = RequestMethod.GET)
+    public String showAllBasket(Model model) {
+        if (this.sessionObject.isLogged()) {
+
+            model.addAttribute("basket", this.sessionObject.getBasketProduct());
+            model.addAttribute("user", this.sessionObject.getUser());
+
+            return "basket";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+
+
+/* @RequestMapping(value = "/addToBasket/{productId}", method = RequestMethod.GET)
     public String addProductToBasket(@PathVariable int productId, Model model) {
 //TODO sprawdzanie zawartości koszyka i ewentualne zwiekszanie ilości
         model.addAttribute("user", this.sessionObject.getUser());
@@ -50,24 +84,7 @@ public class BasketController {
 
 
         return "redirect:" + sessionObject.getLastAddress();
-    }
-
-    @RequestMapping(value = "/basket", method = RequestMethod.GET)
-    public String showAllBasket(Model model) {
-        if (this.sessionObject.isLogged()) {
-
-            model.addAttribute("basket", this.sessionObject.getBasket());
-            model.addAttribute("user", this.sessionObject.getUser());
-
-            return "basket";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-
-
-
+    }*/
 
         /*model.addAttribute("user", this.sessionObject.getUser());
         Product productFromDB = this.productService.getProductById(productId);

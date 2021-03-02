@@ -23,6 +23,7 @@ public class SessionObject {
     private Map<Product, Integer > basket = new HashMap<>();
     private String lastAddress;
     private String lastFindPattern;
+    private List<Product> basketProduct = new ArrayList<>();
 
     public String getFilter() {
         return filter;
@@ -76,6 +77,14 @@ public class SessionObject {
 
     public void setLastFindPattern(String lastFindPattern) {
         this.lastFindPattern = lastFindPattern;
+    }
+
+    public List<Product> getBasketProduct() {
+        return basketProduct;
+    }
+
+    public void setBasketProduct(List<Product> basketProduct) {
+        this.basketProduct = basketProduct;
     }
 }
 
