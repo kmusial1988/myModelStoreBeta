@@ -60,6 +60,12 @@ public class BasketController {
 
             model.addAttribute("basket", this.sessionObject.getBasketProduct());
             model.addAttribute("user", this.sessionObject.getUser());
+            double bill = 0;
+            for(Product product : this.sessionObject.getBasketProduct()){
+                bill = bill + product.getPrice() * product.getPieces();
+            }
+            model.addAttribute("bill",bill);
+
 
             return "basket";
         } else {

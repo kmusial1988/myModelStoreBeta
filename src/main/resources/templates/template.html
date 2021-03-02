@@ -36,6 +36,13 @@
     <a href="/logout">Wyloguj</a>
 </div>
 
+<div id="basket" th:fragment="basket">
+    <a href="/main">Strona główna</a>
+    <a href="/allProduct">Produkt </a>
+    <a href="/edit" th:text="${user.login}" ></a>
+    <a href="/logout">Wyloguj</a>
+</div>
+
 
 <div id="category" th:fragment="category">
     <a> Kategorie produkt --> </a>
