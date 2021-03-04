@@ -5,13 +5,11 @@ import Store.model.Product;
 import Store.services.IBrandService;
 import Store.services.IProductService;
 import Store.session.SessionObject;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -143,5 +141,31 @@ public class ProductController {
         } else {
             return "redirect:/login";
         }
+    }
+    @RequestMapping(value = "/editProduct/{barcode}", method = RequestMethod.GET)
+    public String editProduct(@PathVariable String barcode, Model model) {
+        model.addAttribute("user", this.sessionObject.getUser());
+        model.addAttribute("brands", this.brandService.getAllBrands());
+        Product product = this.productService.getProductByBarcode(barcode);
+        model.addAttribute("product", product);
+
+        return "editProduct";
+
+    }
+//TODO nie wiem
+    @RequestMapping(value = "/editProduct/{barcode}", method = RequestMethod.POST)
+    public String editProductSend(@ModelAttribute Product product, @PathVariable String barcode) {
+
+
+        Product productFromDB = this.productService.getProductByBarcode(barcode);
+        productFromDB.setBrand(product.getBrand());
+        productFromDB.setBox(product.getBox());
+        productFromDB.setPieces(product.getPieces());
+        productFromDB.setPrice(product.getPrice());
+        productFromDB.setCategory(product.getCategory());
+
+        this.productService.updateProduct(productFromDB);
+
+        return "redirect:/allProduct";
     }
 }

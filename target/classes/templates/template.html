@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="menu" th:fragment="menu">
-    <a href="/main">Strona główna</a>
+
     <a href="/allProduct">Produkt </a>
     <a href="/allBrand">Marka</a>
     <a href="/contact">Kontakt</a>
@@ -33,6 +33,13 @@
     <a href="/addProduct" th:if="${user.role.name() == 'ADMIN' }">Dodaj produkt</a>
     <a href="/edit" th:text="${user.login}" ></a>
     <a href="/basket">Koszyk</a>
+    <a href="/logout">Wyloguj</a>
+</div>
+
+<div id="basket" th:fragment="basket">
+    <a href="/main">Strona główna</a>
+    <a href="/allProduct">Produkt </a>
+    <a href="/edit" th:text="${user.login}" ></a>
     <a href="/logout">Wyloguj</a>
 </div>
 

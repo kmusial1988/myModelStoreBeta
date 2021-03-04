@@ -24,6 +24,7 @@ public class SessionObject {
     private String lastAddress;
     private String lastFindPattern;
     private List<Product> basketProduct = new ArrayList<>();
+    private Product productUpdate;
 
     public String getFilter() {
         return filter;
@@ -41,6 +42,14 @@ public class SessionObject {
         String result = this.info;
         this.info = null;
         return result;
+    }
+
+    public Product getProductUpdate() {
+        return productUpdate;
+    }
+
+    public void setProductUpdate(Product productUpdate) {
+        this.productUpdate = productUpdate;
     }
 
     public void setInfo(String info) {

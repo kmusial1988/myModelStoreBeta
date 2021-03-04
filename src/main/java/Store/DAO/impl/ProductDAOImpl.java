@@ -42,7 +42,7 @@ public class ProductDAOImpl implements IProductDAO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.update(product);
+            session.saveOrUpdate(product);
             tx.commit();
         } catch (Exception e) {
             if(tx != null) {
